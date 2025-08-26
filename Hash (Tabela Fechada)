@@ -1,0 +1,36 @@
+class HashTableAberta:
+    def __init__(self, tamanho=10):
+        self.tamanho = tamanho
+        self.tabela = [None] * tamanho
+
+    def funcao_hash(self, chave):
+        return chave % self.tamanho
+
+    def inserir(self, chave, valor):
+        indice = self.funcao_hash(chave)
+
+  
+        while self.tabela[indice] is not None and self.tabela[indice][0] != chave:
+            indice = (indice + 1) % self.tamanho
+
+        self.tabela[indice] = (chave, valor)
+
+    def buscar(self, chave):
+        indice = self.funcao_hash(chave)
+
+        while self.tabela[indice] is not None:
+            if self.tabela[indice][0] == chave:
+                return self.tabela[indice][1]
+            indice = (indice + 1) % self.tamanho
+        return None
+
+
+hash1 = HashTableAberta()
+hash1.inserir(1, "João")
+hash1.inserir(11, "Maria") 
+hash1.inserir(21, "Pedro")  
+
+print(hash1.buscar(1))   
+print(hash1.buscar(11))  
+print(hash1.buscar(21))  
+print(hash1.tabela)      
