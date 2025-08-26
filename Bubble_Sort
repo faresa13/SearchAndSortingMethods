@@ -1,0 +1,40 @@
+using System;
+
+class Program
+{
+    static void BubbleSort(int[] vetor)
+    {
+        int n = vetor.Length;
+        bool trocou;
+
+        for (int i = 0; i < n - 1; i++)
+        {
+            trocou = false;
+
+            for (int j = 0; j < n - 1 - i; j++)
+            {
+                if (vetor[j] > vetor[j + 1])
+                {
+                    int temp = vetor[j];
+                    vetor[j] = vetor[j + 1];
+                    vetor[j + 1] = temp;
+                    trocou = true;
+                }
+            }
+
+            if (!trocou)
+                break;
+        }
+    }
+
+    static void Main(string[] args)
+    {
+        int[] numeros = { 5, 3, 8, 4, 2 };
+
+        Console.WriteLine("Vetor original: " + string.Join(", ", numeros));
+
+        BubbleSort(numeros);
+
+        Console.WriteLine("Vetor ordenado: " + string.Join(", ", numeros));
+    }
+}
