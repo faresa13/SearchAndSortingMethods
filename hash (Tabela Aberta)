@@ -1,0 +1,36 @@
+class HashTableEncadeada:
+    def __init__(self, tamanho=10):
+        self.tamanho = tamanho
+        self.tabela = [[] for _ in range(tamanho)]
+
+    def funcao_hash(self, chave):
+        return chave % self.tamanho
+
+    def inserir(self, chave, valor):
+        indice = self.funcao_hash(chave)
+
+        for i, (k, v) in enumerate(self.tabela[indice]):
+            if k == chave:
+                self.tabela[indice][i] = (chave, valor)
+                return
+
+        self.tabela[indice].append((chave, valor))
+
+    def buscar(self, chave):
+        indice = self.funcao_hash(chave)
+
+        for k, v in self.tabela[indice]:
+            if k == chave:
+                return v
+        return None
+
+
+hash2 = HashTableEncadeada()
+hash2.inserir(1, "João")
+hash2.inserir(11, "Maria")  
+hash2.inserir(21, "Pedro")
+
+print(hash2.buscar(1))   
+print(hash2.buscar(11))  
+print(hash2.buscar(21))  
+print(hash2.tabela)      
